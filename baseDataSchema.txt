@@ -1,0 +1,66 @@
+insert into role 
+values('Admin','Admin','[
+  {
+    "id": "dashboard",
+    "url": "dashboard",
+    "text": "Employee Dashboard",
+    "class": "fa fa-dashboard",
+    "child": []
+  },
+  {
+    "id": "setting",
+    "url": "partners",
+    "text": "Settings",
+    "class": "fa fa-bar-chart-o fa-fw",
+    "child": [
+      {
+        "id": "setting",
+        "url": "setting",
+        "text": "Settings",
+        "class": "fa fa-angle-double-right"
+      },
+      {
+        "id": "geolocation",
+        "url": "geolocation",
+        "text": "Geo Map",
+        "class": "fa fa-angle-double-right"
+      },
+      {
+        "id": "statistics",
+        "url": "statistics",
+        "text": "Statistics",
+        "class": "fa fa-angle-double-right"
+      },
+ 	{
+        "id": "pie",
+        "url": "pie",
+        "text": "Pie",
+        "class": "fa fa-angle-double-right"
+      }
+    ]
+  },
+  {
+    "id": "people",
+    "url": "people",
+    "text": "People",
+    "class": "fa fa-users",
+    "child": [
+      {
+        "id": "addemployee",
+        "url": "addemployee",
+        "text": "Add Employee",
+        "class": "fa fa-angle-double-right"
+      },
+	 {
+        "id": "employees",
+        "url": "employees",
+        "text": "Employees",
+        "class": "fa fa-angle-double-right"
+      }
+    ]
+  }
+]');
+
+
+
+insert into login (loginid, roleid,password,name, status) values('iqbal','Admin', '1234','Iqbal Hossain', 'A');

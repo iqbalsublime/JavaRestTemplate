@@ -1,0 +1,39 @@
+
+<style type='text/css'>
+    .google-map {  height: 500px; }
+</style>
+  
+  
+<section class="content-header">
+	<h1>
+		Geo Location <small>Overview</small>
+	</h1>
+	<ol class="breadcrumb">
+		<li><a href="#/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li class="active">Geo Location</li>
+	</ol>
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+
+	<div class="row">
+	
+		<div class="col-md-12">
+	
+			<map ng-transclude class="google-map" center="map.center" options="map.options" events="map.events" zoom="map.zoom"> 
+				<points coords="points.coords" options="points.options" events="points.events" decimals="points.decimals"></points>
+			  	<!-- <infowindow position="infowindow.position">
+			    	<h4> Position : {{infowindow.position | json}} </h4>
+			  	</infowindow> -->
+			</map>
+			
+		</div>
+		
+	</div>
+
+
+</section>
+
+

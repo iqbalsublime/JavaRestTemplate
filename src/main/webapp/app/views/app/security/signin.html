@@ -1,0 +1,34 @@
+
+
+
+
+<section class="">
+					
+    <div class="row">
+        <div class="col-md-12">
+			
+			<div class="form-box" id="login-box">
+	            <div class="header" style="background-color:#367FA9">Sign In</div>
+	            <form method="post">
+	                <div class="body bg-gray">       
+	                    <div class="form-group" data-ng-show="login.msg != 'Df1000'">
+	                        <span data-i18n="{{login.msg}}"></span>
+	                    </div>
+	                    <div class="form-group">
+	                        <input type="text" data-ng-model="login.loginID" name="loginID" class="form-control" placeholder="Login ID" required autofocus="autofocus" onClick="this.setSelectionRange(0, this.value.length)" />
+	                    </div>
+	                    <div class="form-group">
+	                        <input type="password" data-ng-model="login.password" name="password" class="form-control" placeholder="Password"  onClick="this.setSelectionRange(0, this.value.length)" required />
+	                    </div>          
+	                    <div class="form-group">
+	                        <button type="submit" class="btn btn-primary btn-block" ng-click="signIn(login)">Sign me in</button> 
+	                    </div>
+	                </div>
+	            </form>
+	            
+	        </div>
+			
+        </div>
+    </div>
+
+</section>

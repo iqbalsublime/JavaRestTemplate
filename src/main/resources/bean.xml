@@ -1,0 +1,100 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<bean id="springTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+  		<property name="dataSource" 					ref="dataSource"></property>
+	</bean>
+    
+	<!-- Util Classes -->	
+	<!-- <bean id="restClient" class="com.secl.svca.util.RestClient">
+		<constructor-arg type="java.lang.String" value="${rest.user}"/>
+		<constructor-arg type="java.lang.String" value="${rest.password}"/>
+	</bean> -->
+	<bean id="metaPropertyDataProviderUtil" class="com.secl.svca.util.MetaPropertyDataProviderUtil" />
+	<bean id="idGenerator" class="com.secl.svca.manager.impl.IdGeneratorImpl" />
+	<bean id="queryManager" class="com.secl.svca.manager.impl.PostgreSqlQueryManagerImpl" />
+	<bean id="sessionManager" class="com.secl.svca.manager.impl.SessionManagerImpl" />
+	<bean id="reportUtil" class="com.secl.svca.util.ReportUtil" init-method="init">
+		<property name="folderName" 					value="${report.folder}" />
+		<property name="dataSource" 					ref="dataSource" />
+	</bean>
+	
+	<!-- Rest Request Service -->
+	<!-- <bean id="restRequestService" class="com.secl.svca.rest.service.RestRequestService">
+		  <property name="baseUrl" 						value="${rest.url}" />
+		  <property name="restClient" 					ref="restClient"/>
+	</bean> -->
+    
+    <!-- Couchbase Dao --> 
+	<!-- <bean id="memoryDao" class="com.secl.svca.dao.impl.CouchBaseDaoImpl" init-method="init" destroy-method="destroy">
+		<property name="couchUrl" 						value="${couch.url}" />
+		<property name="couchBucket" 					value="${couch.bucket}" />
+		<property name="couchPassword" 					value="${couch.password}" />
+		<property name="couchViewMode" 					value="${couch.viewmode}" />
+	</bean> -->
+	
+	<!-- Dao Classes -->
+    <bean id="simpleJdbcDao" class="com.secl.svca.dao.impl.SimpleJdbcDaoImpl">
+        <property name="dataSource" 					ref="dataSource" />
+    </bean>
+    
+    <bean id="springJdbcDao" class="com.secl.svca.dao.impl.SpringJdbcDaoImpl">
+        <property name="dataSource" 					ref="dataSource" />
+        <property name="transactionManager" 			ref="springTransactionManager"></property>
+    </bean>
+            
+	<bean id="dataProviderUtil" class="com.secl.svca.util.DataProviderUtil" />
+	
+	<!-- Manager Classes -->
+    <bean id="manager" class="com.secl.svca.manager.impl.ManagerImpl">
+        <property name="dataSource" 								ref="dataSource"/>
+        <property name="sessionManager" 							ref="sessionManager"/>
+        <property name="queryManager" 								ref="queryManager"/>
+        <property name="idGenerator" 								ref="idGenerator"/>
+        <property name="springJdbcDao"                  			ref="springJdbcDao" />
+        <property name="simpleJdbcDao"                  			ref="simpleJdbcDao" />
+        <property name="reportUtil"                  				ref="reportUtil" />
+        <property name="dataProviderUtil"               			ref="dataProviderUtil" />
+		<!-- <property name="memoryDao" 									ref="memoryDao"/> -->
+		<property name="metaPropertyDataProviderUtil"               ref="metaPropertyDataProviderUtil" />
+    </bean>
+    
+    <bean id="roleManager" class="com.secl.svca.manager.impl.RoleManagerImpl" parent="manager" />
+    <bean id="userManager" class="com.secl.svca.manager.impl.UserManagerImpl" parent="manager" />
+    <bean id="subscriberManager" class="com.secl.svca.manager.impl.SubscriberManagerImpl" parent="manager" />
+	<bean id="loginManager" class="com.secl.svca.manager.impl.LoginManagerImpl" parent="manager" />
+	<bean id="metapropertyManager" class="com.secl.svca.manager.impl.MetapropertyManagerImpl" parent="manager" />
+    
+    
+    <!-- Service Classes -->	
+    <!-- <bean id="webSocketService" class="com.secl.svca.rest.service.WebSocketService" /> -->
+    <bean id="fileService" class="com.secl.svca.rest.service.FileService" />
+    <bean id="dataService" class="com.secl.svca.rest.service.DataService" />
+	
+	<bean id="roleService" class="com.secl.svca.rest.service.RoleService">
+		<property name="roleManager" 					ref="roleManager"/>
+	</bean>
+	
+	<bean id="userService" class="com.secl.svca.rest.service.UserService">
+		<property name="userManager" 					ref="userManager"/>
+	</bean>
+	
+	<bean id="subscriberService" class="com.secl.svca.rest.service.SubscriberService">
+		<property name="subscriberManager" 					ref="subscriberManager"/>
+	</bean>
+    
+	<bean id="loginService" class="com.secl.svca.rest.service.LoginService">
+		<property name="loginManager" 					ref="loginManager"/>
+	</bean>
+	
+	<bean id="metapropertyService" class="com.secl.svca.rest.service.MetapropertyService">
+		<property name="metapropertyManager" 			ref="metapropertyManager"/>
+	</bean>
+			
+</beans>

@@ -1,0 +1,29 @@
+CREATE TABLE public.role (
+	roleid varchar NOT NULL,
+	roledescription varchar NOT NULL,
+	menujson text,
+	CONSTRAINT pk_role PRIMARY KEY (roleid)
+);
+
+
+CREATE TABLE public.login (
+	loginid varchar NOT NULL,
+	roleid varchar NOT NULL,
+	stakeholderid varchar,
+	srid varchar,
+	password varchar NOT NULL,
+	status varchar NOT NULL,
+	name varchar NOT NULL,
+	email varchar,
+	phoneno varchar,
+	imagepath varchar,
+	rolejson varchar,
+	lat varchar DEFAULT '0'::character varying,
+	lng varchar DEFAULT '0'::character varying,
+	createdon timestamp NOT NULL DEFAULT ('now'::text)::date,
+	createdby varchar NOT NULL DEFAULT "current_user"(),
+	editedon timestamp,
+	editedby varchar,
+	CONSTRAINT pk_login PRIMARY KEY (loginid),
+	CONSTRAINT fk_roleid_login FOREIGN KEY (roleid) REFERENCES public.role(roleid)
+);

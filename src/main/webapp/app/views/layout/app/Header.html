@@ -1,0 +1,51 @@
+
+<a href="#/dashboard" class="logo">
+    SVCA
+</a>
+
+<nav class="navbar navbar-static-top" role="navigation" data-ng-controller="appHeaderController">
+    <a  class="navbar-btn sidebar-toggle link-pointer" data-toggle="offcanvas" role="button" data-ng-click="menuToggle()">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </a>
+    <div class="navbar-right">
+        <ul class="nav navbar-nav">
+            <li class="dropdown user user-menu" data-ng-click="userToggle()" id="userToggle">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="glyphicon glyphicon-user"></i>
+                    <span>{{userInfo.loginID}} <i class="caret"></i></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="user-header bg-light-blue">
+                        <img data-ng-src="{{userInfo.imagePath}}" class="img-circle" alt="User Image" />
+                        <p>{{userInfo.name}}</p>
+                    </li>
+                    <li class="user-footer">
+                        <div class="pull-left">
+                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                        </div>
+                        <div class="pull-right">
+                            <a  data-ng-click="logout()" class="btn btn-default btn-flat">Sign out</a>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+<script type="text/javascript">
+	$(function() {
+		"use strict";
+	    $(".navbar .menu").slimscroll({
+	        height: "200px",
+	        alwaysVisible: false,
+	        size: "3px"
+	    }).css("width", "100%");
+	
+	});
+</script>

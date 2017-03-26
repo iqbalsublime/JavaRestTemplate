@@ -1,0 +1,81 @@
+
+<section class="content-header ng-scope">
+	<h1>
+		Subscribers<small></small>
+	</h1>
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li class="active">Subscribers </li>
+	</ol>
+</section>
+
+
+
+<!-- Main content -->
+<section class="content">
+					
+	<div class="row">
+		<div class="col-md-12">
+			<div data-ng-include="messagePageLocation"></div>
+		</div>
+	</div>
+
+	<div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">List of Subscriber</h3>
+                    <div class="box-tools">
+                        <div class="input-group">
+                            <input type="text" name="table_search" data-ng-model="searchText" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search">
+                            <div class="input-group-btn">
+                                <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                    	<thead>
+	                        <tr>
+	                            <th class="text-left" style="width:25px;">#</th>
+	                            <th class="text-left">NID</th>	
+	                            <th class="text-left">Name</th>                           
+	                            <th class="text-center">DoB</th>
+	                            <th class="text-left">MSISDN</th>
+	                            <th class="text-center">Status</th>
+	                        </tr>                    	
+                    	</thead>
+                        <tbody>
+	                        <tr data-ng-repeat="supplier in filteredSubscribers">
+	                            <td class="text-left" style="vertical-align: middle;">{{$index+1}}</td>
+	                            <td class="text-left" style="vertical-align: middle;">{{supplier.nID}}</td>
+	                            <td class="text-left" style="vertical-align: middle;">{{supplier.nameEN}}</td>
+	                            <td class="text-center" style="vertical-align: middle;">{{supplier.dateofBirth | date:'dd MMM, yyyy'}}</td>
+	                            <td class="text-left" style="vertical-align: middle;">{{supplier.mSISDN}}</td>
+	                            <td class="text-center" style="vertical-align: middle;">{{supplier.status}}</td>
+	                        </tr>
+	                    </tbody>
+                    </table>
+                </div>
+                <div class="box-footer clearfix">
+                	<div class="col-md-12">
+						<div class="col-md-4 col-sm-4">
+							<h5 data-ng-show="filteredSubscribers.length > 0">{{ pageItemText }}</h5>
+							<h5 data-ng-show="filteredSubscribers.length == 0">No Subscriber Found</h5>
+						</div>
+						
+						<div class="col-md-8 col-sm-4">
+							<pagination data-ng-model="currentPage" data-total-items="filteredTotalRecords" 
+								data-boundary-links="true" data-max-size="itemsPerPage" data-items-per-page="pageSize"></pagination>
+						</div>
+                	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+		
+
+
+</section>
